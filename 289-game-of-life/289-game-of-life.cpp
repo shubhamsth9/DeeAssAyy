@@ -1,29 +1,25 @@
 class Solution {
 public:
     void gameOfLife(vector<vector<int>>& board) {
-        int n = board.size(), m=board[0].size();
-        vector<vector<int>> res(n, vector<int>(m,0));
+        int n = board.size(), m = board[0].size();
         
         for(int i=0; i<n; i++){
             for(int j=0; j<m; j++){
                 int count=0;
-                if(i-1 >= 0 && j-1 >=0 && board[i-1][j-1] == 1) count++;
-                if(i-1 >=0 && board[i-1][j] == 1) count++;
-                if(i-1 >= 0 && j+1 < m && board[i-1][j+1] == 1) count++;
-                if(j-1 >= 0 && board[i][j-1] == 1) count++;
-                if(j+1 < m && board[i][j+1] == 1) count++;
-                if(i+1 < n && j-1 >= 0 && board[i+1][j-1] == 1) count++;
-                if(i+1 < n && board[i+1][j] == 1) count++;
-                if(i+1 < n && j+1 < m && board[i+1][j+1] == 1) count++;
+                for(int a=max(i-1, 0); a<min(i+2,n); a++){
+                    for(int b=max(j-1, 0); b<min(j+2, m); b++){
+                        if(board[a][b] & 1) count++;
+                    }
+                }
+                if(count == 3 || count-board[i][j] == 3)
+                    board[i][j] |= 2;
                 
-                if(board[i][j] == 1 && count == 2 || count == 3) res[i][j] = 1;
-                else if(board[i][j] == 0 && count == 3) res[i][j] = 1;
             }
         }
         
         for(int i=0; i<n; i++){
             for(int j=0; j<m; j++){
-                board[i][j] = res[i][j];
+                board[i][j] >>= 1;
             }
         }
     }
