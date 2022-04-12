@@ -6,20 +6,26 @@ public:
     
     vector<vector<int>> merge(vector<vector<int>>& a) {
         sort(a.begin(), a.end(), sortcol);
-        int i=0, j=0;
+        int i=1, j=0;
         int n= a.size();
-        vector<vector<int>> res;
         
         while(i<n){
-            int start = a[i][0], end = a[i][1];
-            int j = i+1;
-            while(j<n && a[j][0] <= end){
-                end = max(end, a[j][1]);
-                j++;
+            if(a[j][1] >= a[i][0]){
+                a[j][0] = min(a[j][0], a[i][0]);
+                a[j][1] = max(a[j][1], a[i][1]);
             }
-            res.push_back({start, end});
-            i = j;
+            else{
+                j++;
+                a[j][0] = a[i][0], a[j][1] = a[i][1];
+            }
+            i++;
         }
-        return res;
+        
+        int k = n-j-1;
+        while(k--){
+            a.pop_back();
+        }
+        
+        return a;
     }
 };
