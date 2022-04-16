@@ -110,38 +110,16 @@ int main() {
 
 // } Driver Code Ends
 
+void left(Node* root, int level, vector<int>& res){
+    if(root == NULL) return;
+    if(level == res.size()) res.push_back(root->data);
+    left(root->left, level+1, res);
+    left(root->right, level+1, res);
+}
 
-/* A binary tree node
-
-struct Node
-{
-    int data;
-    struct Node* left;
-    struct Node* right;
-    
-    Node(int x){
-        data = x;
-        left = right = NULL;
-    }
-};
- */
-
-//Function to return a list containing elements of left view of the binary tree.
 vector<int> leftView(Node *root)
 {
    vector<int> res;
-   if(root == NULL) return res;
-   queue<Node*> q;
-   q.push(root);
-   while(!q.empty()){
-       int n = q.size();
-       res.push_back(q.front()->data);
-       while(n--){
-           Node* curr = q.front();
-           q.pop();
-           if(curr->left != NULL) q.push(curr->left);
-           if(curr->right != NULL) q.push(curr->right);
-       }
-   }
+   left(root, 0, res);
    return res;
 }
