@@ -106,19 +106,19 @@ int main()
 }// } Driver Code Ends
 
 
-void height(Node *root, int h, int k, vector<int>& res){
+void height(Node *root, int k, vector<int>& res){
     if(root == NULL) return;
-    if(h == k) {
+    if(k == 0) {
         res.push_back(root->data);
         return;
     }
-    height(root->left, h+1, k, res);
-    height(root->right, h+1, k, res);
+    height(root->left, k-1, res);
+    height(root->right, k-1, res);
 }
 
 vector<int> Kdistance(struct Node *root, int k)
 {
     vector<int> res;
-    height(root, 0, k, res);
+    height(root, k, res);
     return res;
 }
