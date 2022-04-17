@@ -104,20 +104,16 @@ struct Node
 class Solution{
     public:
     pair<bool, int> height(Node* root){
-        if(root == NULL) {
-            //pair<bool, int> a(true, 0);
-            //return a;
+        if(root == NULL)
             return {true, 0};
-        }
+
         pair<bool, int> lh = height(root->left);
         pair<bool, int> rh = height(root->right);
-        int h_diff = abs(lh.second - rh.second);
         
-        if(lh.first == true && rh.first ==  true &&  h_diff <= 1){
+        if(lh.first == true && rh.first ==  true &&  abs(lh.second - rh.second) <= 1)
             return {true, max(lh.second, rh.second)+1};
-        }
-        else
-            return {false, max(lh.second, rh.second)+1};
+        
+        return {false, max(lh.second, rh.second)+1};
         
     }
     
