@@ -11,22 +11,23 @@
  */
 class Solution {
 public:
-    TreeNode* temp = new TreeNode(-1);
-    TreeNode* res = temp;
     
-    void inorder(TreeNode* root){
-        if(root == NULL) return;
-        inorder(root->left);
+    TreeNode* inorder(TreeNode* root, TreeNode* temp){
+        if(root == NULL) return temp;
         
-        temp->right = new TreeNode(root->val);
-        temp = temp->right;
+        temp = inorder(root->left, temp);
+        temp->right = root;
+        root->left = NULL;
+        temp = root;
         
-        inorder(root->right);
+        return inorder(root->right, temp);
     }
     
     TreeNode* increasingBST(TreeNode* root) {
         
-        inorder(root);
+        TreeNode* res = new TreeNode(0);
+        TreeNode* temp = res;
+        inorder(root, temp);
         return res->right;
         
     }
