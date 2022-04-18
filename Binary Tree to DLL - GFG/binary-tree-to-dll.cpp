@@ -94,27 +94,19 @@ class Solution
 {
     public: 
     //Function to convert binary tree to doubly linked list and return it.
-    void inorder(Node* root, Node*& prev, Node*& res){
-        if(root == NULL) return;
-        inorder(root->left, prev, res);
-        if(prev == NULL){
-            res = root;
-        }
+    Node* prev = NULL;
+    Node * bToDLL(Node *root)
+    {
+        if(root == NULL) return root;
+        Node* head = bToDLL(root->left);
+        if(prev == NULL) head = root;
         else{
             root->left = prev;
             prev->right = root;
         }
         prev = root;
-        inorder(root->right, prev, res);
-    }
-    
-    Node * bToDLL(Node *root)
-    {
-        if(root == NULL) return root;
-        Node* res = NULL;
-        Node* prev = NULL;
-        inorder(root, prev, res);
-        return res;
+        bToDLL(root->right);
+        return head;
     }
 };
 
