@@ -1,16 +1,15 @@
 
 class Solution {
 public:
-    TreeNode *first=NULL, *second=NULL, *prev;
+    TreeNode *first=NULL, *second=NULL, *prev=NULL;
     
     void inorder(TreeNode* root){
         if(root == NULL) return;
         inorder(root->left);
         
-        if(first == NULL && root->val < prev->val){
-            first = prev;
-        }
-        if(first != NULL && root->val < prev->val){
+        if(prev && root->val < prev->val){
+            if(!first)
+                first = prev;
             second = root;
         }
         prev = root;
@@ -20,7 +19,6 @@ public:
     
     void recoverTree(TreeNode* root) {
         
-        prev = new TreeNode(INT_MIN);
         inorder(root);
         swap(first->val, second->val);
     }
