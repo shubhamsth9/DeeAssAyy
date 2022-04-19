@@ -19,45 +19,31 @@ struct Node
 };
 
  // } Driver Code Ends
-/* A binary tree node
 
-struct Node
-{
-    int data;
-    struct Node* left;
-    struct Node* right;
-    
-    Node(int x){
-        data = x;
-        left = right = NULL;
-    }
-};
- */
 
 class Solution
 {
     public:
-    bool contains(Node* root, int n1){
-        if(root == NULL) return false;
-        if(root->data == n1) return true;
-        return contains(root->left, n1) || contains(root->right, n1);
-    }
-    
-    void util(Node* root, int n1, int n2, Node* &res){
-        if(root == NULL) return;
-        if(contains(root, n1) && contains(root, n2)){
-            res = root;
-        }
-        util(root->left, n1, n2, res);
-        util(root->right, n1, n2, res);
-    }
-    
     //Function to return the lowest common ancestor in a Binary Tree.
     Node* lca(Node* root ,int n1 ,int n2 )
     {
-        Node* res = new Node(-1);
-        util(root, n1, n2, res);
-        return res;
+        if(root == NULL) return NULL;
+        
+        if(root->data == n1 || root->data == n2)
+            return root;
+        
+        Node* lca1 = lca(root->left, n1, n2);
+        Node* lca2 = lca(root->right, n1, n2);
+        
+        if(lca1 != NULL && lca2 != NULL)
+            return root;
+        
+        if(lca1 != NULL)
+            return lca1;
+        else
+            return lca2;
+        
+        return root;
     }
 };
 
