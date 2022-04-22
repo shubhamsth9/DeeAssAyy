@@ -1,22 +1,53 @@
+struct node{
+public:
+    int key, val;
+    node* next;
+    node(int k, int v, node* nxt){
+        key = k;
+        val = v;
+        next = nxt;
+    }
+};
+
 class MyHashMap {
 public:
-    const static int n = 1e7+1;
-    vector<int> mapp;
+    const static int size = 10067;
+    const static int multiplier = 1000253;
     
-    MyHashMap() {
-        mapp.resize(n, -1);    
+    node* table[size];
+    
+    int hash(int key){
+        return (int)(((long)key*multiplier) %size);
     }
     
     void put(int key, int value) {
-        mapp[key] = value;
+        remove(key);
+        int h = hash(key);
+        node* tmp = new node(key, value, table[h]);
+        table[h] = tmp;
     }
     
     int get(int key) {
-        return mapp[key];
+        int h = hash(key);
+        node* tmp = table[h];
+        for(; tmp != NULL; tmp = tmp->next){
+            if(tmp->key == key) return tmp->val;
+        }
+        return -1;
     }
     
     void remove(int key) {
-        mapp[key] = -1;
+        int h = hash(key);
+        node* tmp = table[h];
+        if(tmp == NULL) return;
+        if(tmp->key == key) table[h] = tmp->next;
+        else for(; tmp->next != NULL; tmp = tmp->next){
+            if(tmp->next->key == key)
+            {
+                tmp->next = tmp->next->next;
+                return;
+            }
+        }
     }
 };
 
