@@ -110,19 +110,17 @@ int main()
 
 // } Driver Code Ends
 
-int cnt;
-
-int dfs(Node* root, int x){
+int dfs(Node* root, int x, int &cnt){
     if(root == NULL) return 0;
-    int sum = root->data + dfs(root->left, x) + dfs(root->right, x);
+    int sum = root->data + dfs(root->left, x, cnt) + dfs(root->right, x, cnt);
     if(sum == x) cnt += 1;
     return sum;
 }
 
 int countSubtreesWithSumX(Node* root, int x)
 {
-    cnt = 0;
-    dfs(root, x);
+    int cnt = 0;
+    dfs(root, x,cnt);
     
     return cnt;
 }
