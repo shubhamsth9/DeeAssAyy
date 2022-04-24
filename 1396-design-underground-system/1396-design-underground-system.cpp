@@ -13,8 +13,9 @@ public:
     
     void checkOut(int id, string stationName, int t) {
         auto& checkIn = checkInMap[id];
-        checkOutMap[checkIn.first + "_" + stationName].first += t - checkIn.second;
-        checkOutMap[checkIn.first + "_" + stationName].second += 1;
+        string route = checkIn.first + "_" + stationName;
+        checkOutMap[route].first += t - checkIn.second;
+        checkOutMap[route].second += 1;
     }
     
     double getAverageTime(string startStation, string endStation) {
