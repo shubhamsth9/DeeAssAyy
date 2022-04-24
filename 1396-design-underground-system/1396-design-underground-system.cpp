@@ -13,14 +13,12 @@ public:
     
     void checkOut(int id, string stationName, int t) {
         auto& checkIn = checkInMap[id];
-        string route = checkIn.first + "_" + stationName;
-        checkOutMap[route].first += t - checkIn.second;
-        checkOutMap[route].second += 1;
+        checkOutMap[checkIn.first + "_" + stationName].first += t - checkIn.second;
+        checkOutMap[checkIn.first + "_" + stationName].second += 1;
     }
     
     double getAverageTime(string startStation, string endStation) {
-        string route = startStation + "_" + endStation;
-        auto& checkOut = checkOutMap[route];
+        auto& checkOut = checkOutMap[startStation + "_" + endStation];
         return (double) checkOut.first/checkOut.second ;
     }
 };
