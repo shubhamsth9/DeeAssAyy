@@ -19,32 +19,23 @@
 
 class PeekingIterator : public Iterator {
 public:
-    int i, n;
-    vector<int> res;
     
 	PeekingIterator(const vector<int>& nums) : Iterator(nums) {
-	    i = -1;
-	    n = nums.size();
-        for(int j=0; j<n; j++){
-            res.push_back(nums[j]);
-        }
-        
 	}
 	
     // Returns the next element in the iteration without advancing the iterator.
 	int peek() {
-        return res[i+1];
+        return Iterator(*this).next();
 	}
 	
 	// hasNext() and next() should behave the same as in the Iterator interface.
 	// Override them if needed.
 	int next() {
-	    i++;
-        return res[i];
+	    
+        return Iterator::next();
 	}
 	
 	bool hasNext() const {
-	    if(i < n-1) return true;
-        return false;
+	    return Iterator::hasNext();
 	}
 };
