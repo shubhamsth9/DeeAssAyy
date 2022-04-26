@@ -28,7 +28,7 @@ class Solution
     int minDiff(Node *root, int k)
     {
         if(root == NULL) return INT_MAX;
-        if(root->data == k) return 0;
+        //if(root->data == k) return 0;
         if(k - root->data > 0){
             return min(k-root->data, minDiff(root->right, k));
         }
