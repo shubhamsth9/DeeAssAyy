@@ -1,5 +1,5 @@
 # Insert a node in a BST
-## Easy 
+##  Easy 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">Given a BST and a key K. If K is not present in the BST, Insert a new Node with a value equal to K into the BST.&nbsp;<br>
 <strong>Note: </strong>If K is already present in the BST, don't modify the BST.</span></p>
