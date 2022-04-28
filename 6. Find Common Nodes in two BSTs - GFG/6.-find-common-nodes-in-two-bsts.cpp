@@ -85,30 +85,29 @@ Node* buildTree(string str)
 class Solution
 {
     public:
-    //Function to find the nodes that are common in both BST. 
-    void inorder(Node* root, vector<int>& res){
+    //Function to find the nodes that are common in both BST.
+    bool find(Node* root, int x){
+        if(root == NULL) return false;
+        if(root->data > x) return find(root->left, x);
+        else if(root->data < x) return find(root->right, x);
+        return true;
+    }
+    
+    void inorder(Node* root, Node* temp, vector<int>& res){
         if(root == NULL) return;
-        inorder(root->left, res);
-        res.push_back(root->data);
-        inorder(root->right, res);
+        inorder(root->left, temp, res);
+        
+        if(find(temp, root->data)) res.push_back(root->data);
+        
+        inorder(root->right, temp, res);
     }
     
     vector <int> findCommon(Node *root1, Node *root2)
     {
-        vector<int> r1, r2, res;
+        vector<int> res;
         if(root1 == NULL || root2== NULL) return res;
-        inorder(root1, r1);
-        inorder(root2, r2);
-        int i=0, j=0;
+        inorder(root1, root2, res);
         
-        while(i < r1.size() && j < r2.size()){
-            if(r1[i] < r2[j]) i++;
-            else if(r1[i] > r2[j]) j++;
-            else{
-                res.push_back(r1[i]);
-                i++, j++;
-            }
-        }
         return res;
     }
 };
