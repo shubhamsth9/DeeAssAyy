@@ -105,7 +105,7 @@ int findCeil(Node* root, int x) {
         if(root->data == x) return x;
         if(root->data < x) root = root->right;
         else{
-            res = min(res, root->data);
+            res = root->data;
             root = root->left;
         }
     }
