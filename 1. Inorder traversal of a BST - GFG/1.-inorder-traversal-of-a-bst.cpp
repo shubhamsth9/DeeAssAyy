@@ -33,17 +33,20 @@ Node *newNode(Node *root, int data) {
 // User function Template for C++
 
 // Function to return a list containing the inorder traversal of the BST.
-void util(Node* root, vector<int>& res){
-    if(root == NULL) return;
-    util(root->left, res);
-    res.push_back(root->data);
-    util(root->right, res);
-}
 
 vector<int> inOrder(Node *root) {
     vector<int> res;
-    if(root == NULL) return res;
-    util(root, res);
+    stack<Node*> s;
+    while(root || !s.empty()){
+        while(root){
+            s.push(root);
+            root = root->left;
+        }
+        root = s.top();
+        s.pop();
+        res.push_back(root->data);
+        root = root->right;
+    }
     return res;
 }
 
