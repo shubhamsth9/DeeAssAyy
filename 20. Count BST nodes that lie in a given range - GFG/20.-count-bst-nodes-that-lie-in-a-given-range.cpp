@@ -104,18 +104,12 @@ int main()
 }
 // } Driver Code Ends
 
-
-void inorder(Node* root, int l, int h, int& cnt){
-    if(root == NULL) return;
-    if(root->data <= h && root->data >= l) cnt++;
-    inorder(root->left, l, h, cnt);
-    inorder(root->right, l, h, cnt);
-}
-
 int getCount(Node *root, int l, int h)
 {
     if(root == NULL) return 0;
-    int cnt = 0;
-    inorder(root, l, h, cnt);
-    return cnt;
+    if(root->data <= h && root->data >= l){
+        return 1+getCount(root->left, l, h)+getCount(root->right, l, h);
+    }
+    if(root->data < l) return getCount(root->right, l, h);
+    return getCount(root->left, l, h);
 }
