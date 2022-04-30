@@ -44,25 +44,39 @@ int main()
 
 
 //User function Template for C++
-void util(Node*& root, int val){
-    Node *curr=root, *prev=NULL , *temp = new Node(val);
-    while(curr){
-        prev = curr;
-        if(curr->data > val) curr = curr->left;
-        else curr = curr->right;
-    }
-    if(prev->data > val) prev->left = temp;
-    else prev->right = temp;
-}
-
 
 //Function to construct the BST from its given level order traversal.
 Node* constructBst(int arr[], int n)
 {
     if(n == 0) return NULL;
     Node* root = new Node(arr[0]);
-    for(int i=1; i<n; i++){
-        util(root, arr[i]);
+    queue<pair<Node*,pair<int, int>>> q;
+    q.push({root, {INT_MIN, INT_MAX}});
+    int i=1;
+    while(!q.empty() && i<n){
+        auto curr = q.front();
+        Node* node = curr.first;
+        int lo = curr.second.first, hi = curr.second.second;
+        q.pop();
+        
+        if(arr[i]>lo && arr[i]<node->data){
+            node->left = new Node(arr[i]);
+            q.push({node->left, {lo, node->data}});
+            i++;
+        }
+        else{
+            node->left = NULL;
+        }
+        
+        if(arr[i]>node->data && arr[i]<hi){
+            node->right = new Node(arr[i]);
+            q.push({node->right, {node->data, hi}});
+            i++;
+        }
+        else{
+            node->right = NULL;
+        }
     }
+    
     return root;
 }
