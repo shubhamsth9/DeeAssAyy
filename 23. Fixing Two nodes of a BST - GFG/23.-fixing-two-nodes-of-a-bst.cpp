@@ -110,29 +110,29 @@ struct Node
     }
 };
 */
-void inorder(Node* root, vector<Node*>& vec){
+void inorder(Node* root, Node*& frst, Node*& lst, Node*& prev){
     if(root == NULL) return;
-    inorder(root->left, vec);
-    vec.push_back(root);
-    inorder(root->right, vec);
+    inorder(root->left, frst, lst, prev);
+    if(prev && root->data < prev->data){
+        if(!frst){
+            frst = prev;
+            lst = root;
+        }
+        else
+            lst = root;
+    }
+    prev = root;
+    inorder(root->right, frst, lst, prev);
 }
 
 class Solution {
   public:
     void correctBST( struct Node* root )
     {
-        vector<Node*> vec;
-        inorder(root, vec);
-        Node* t1 = NULL, *t2 = NULL;
-        for(int i=0; i<vec.size()-1; i++){
-            if(vec[i]->data > vec[i+1]->data)
-                if(t1 == NULL) t1 = vec[i], t2 = vec[i+1];
-                else t2 = vec[i+1];
-        }
-        if(t1 != NULL && t2 != NULL){
-            int temp = t1->data;
-            t1->data = t2->data;
-            t2->data = temp;
+        Node *frst = NULL, *lst = NULL, *prev = NULL;
+        inorder(root, frst, lst, prev);
+        if(frst && lst){
+            swap(frst->data, lst->data);
         }
         return;
     }
