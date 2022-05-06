@@ -1,21 +1,14 @@
 class Solution {
 public:
     string removeDuplicates(string s, int k) {
-        int cnt=0, i=0, j=1;
-        while(j<s.length()){
-            if(s[i] == s[j]){
-                cnt++; j++;
-                if(cnt == k){
-                    s.erase(i, k);
-                    i=max(0, i-k+1);
-                    j=i+1, cnt=1;
-                }
-            }
-            else{
-                i=j; j=i+1;
-                cnt=1;
-            }
+        int i = 0, n = s.length();
+        vector<int> cnt(n);
+        
+        for(int j=0; j<n; i++, j++){
+            s[i] = s[j];
+            cnt[i] = i>0 && s[j] == s[i-1] ? cnt[i-1]+1 : 1;
+            if(cnt[i] == k) i -= k;
         }
-        return s;
+        return s.substr(0, i);
     }
 };
