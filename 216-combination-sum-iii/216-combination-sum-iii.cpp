@@ -9,6 +9,7 @@ public:
             return;
         }
         for(int i = idx+1; i<=9; i++){
+            if(sum < 0) break;
             temp.push_back(i);
             util(k-1, sum-i, i, temp);
             temp.pop_back();
