@@ -103,34 +103,26 @@ struct Node
 
 class Solution{
   public:
-    int sumOfGrandChildren(Node* root, map<Node*, int>& mp){
-        int sum = 0;
-        if(root->left){
-            sum +=  util(root->left->left, mp) + util(root->left->right, mp);
-        }
-        if(root->right){
-            sum += util(root->right->right, mp) + util(root->right->left, mp);
-        }
-        return sum;
-    }
-    
-    int util(Node* root, map<Node*, int>& mp){
-        if(root == NULL) return 0;
-        if(mp.find(root) != mp.end())
-            return mp[root];
-        
-        int incl = root->data + sumOfGrandChildren(root, mp);
-        int excl = util(root->left, mp) + util(root->right, mp);
-        mp[root] = max(incl, excl);
-        return mp[root];
+     
+    pair<int, int> util(Node* root){
+         if(root == NULL){
+             return {0, 0};
+         }
+         auto lsum = util(root->left);
+         auto rsum = util(root->right);
+         pair<int, int> sum;
+         //include root
+         sum.first = root->data + lsum.second + rsum.second;
+         sum.second = max(lsum.first, lsum.second) + max(rsum.first, rsum.second);
+         return sum;
     }
     
     //Function to return the maximum sum of non-adjacent nodes.
     int getMaxSum(Node *root) 
     {
         if(root == NULL) return 0;
-        map<Node*, int> mp;
-        return util(root, mp);
+        pair<int, int> res = util(root);
+        return max(res.first, res.second);
     }
 };
 
