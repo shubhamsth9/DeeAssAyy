@@ -23,18 +23,18 @@ class Solution
             }
             vis[u] = true;
             
-            for(auto v: adj[u]){
-                if( v[1]!=0 && !vis[v[0]]){
-                        res[v[0]] = min(res[v[0]], res[u] + v[1]);
-                }
-            }
-            
-            // for(int i=0; i<adj[u].size(); i++){
-                
-            //     if((adj[u][i][1] != 0 && !vis[adj[u][i][0]])){
-            //         res[adj[u][i][0]] = min(res[adj[u][i][0]], res[u] + res[adj[u][i][1]]);
+            // for(auto v: adj[u]){
+            //     if( v[1]!=0 && !vis[v[0]]){
+            //             res[v[0]] = min(res[v[0]], res[u] + v[1]);
             //     }
             // }
+            
+            for(int i=0; i<adj[u].size(); i++){
+                
+                if((adj[u][i][1] != 0 && !vis[adj[u][i][0]])){
+                    res[adj[u][i][0]] = min(res[adj[u][i][0]], res[u] + adj[u][i][1]);
+                }
+            }
         }
         return res;
         
