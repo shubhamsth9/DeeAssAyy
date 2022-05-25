@@ -10,47 +10,33 @@ class Solution
     //from the source vertex S.
     vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
     {
-        // vector<int> res(V, INT_MAX);
-        // vector<bool> vis(V, false);
-        // res[S] = 0;
+        vector<int> res(V, INT_MAX);
+        vector<bool> vis(V, false);
+        res[S] = 0;
         
-        // for(int cnt=0; cnt<V; cnt++){
-        //     int u = -1;
-        //     for(int i=0; i<V; i++){
-        //         if(!vis[i] && (u == -1 || (res[i] < res[u]))){
-        //             u = i;
-        //         }
-        //     }
-        //     vis[u] = true;
-            
-        //     cout<<u<<" ";
-            
-        //     for(int i=0; i<adj[u].size(); i++){
-                
-        //         if((!vis[adj[u][i][0]]) && ((res[u] + res[adj[u][i][1]]) < res[adj[u][i][0]])){
-        //             res[adj[u][i][0]] = res[u] + res[adj[u][i][1]];
-        //         }
-        //     }
-        // }
-        // cout<<endl;
-        // return res;
-        vector<int> dis(V, INT_MAX);
-        priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq; // store distance and node
-        dis[S] = 0;
-        pq.push({0, S});
-        while(!pq.empty()) {
-            int node = pq.top().second;
-            int dis_curr = pq.top().first;
-            pq.pop();
-            for(auto& it: adj[node]) {
-                int nxt_dis = dis_curr + it[1];
-                if(dis[it[0]]>nxt_dis) {
-                    dis[it[0]] = nxt_dis;
-                    pq.push({nxt_dis, it[0]});
+        for(int cnt=0; cnt<V; cnt++){
+            int u = -1;
+            for(int i=0; i<V; i++){
+                if(!vis[i] && (u == -1 || (res[i] < res[u]))){
+                    u = i;
                 }
             }
+            vis[u] = true;
+            
+            for(auto v: adj[u]){
+                if( v[1]!=0 && !vis[v[0]]){
+                        res[v[0]] = min(res[v[0]], res[u] + v[1]);
+                }
+            }
+            
+            // for(int i=0; i<adj[u].size(); i++){
+                
+            //     if((adj[u][i][1] != 0 && !vis[adj[u][i][0]])){
+            //         res[adj[u][i][0]] = min(res[adj[u][i][0]], res[u] + res[adj[u][i][1]]);
+            //     }
+            // }
         }
-        return dis;
+        return res;
         
     }
 };
