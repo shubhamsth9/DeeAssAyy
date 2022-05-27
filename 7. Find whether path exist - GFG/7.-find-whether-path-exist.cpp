@@ -25,16 +25,15 @@ class Solution
     bool is_Possible(vector<vector<int>>& grid) 
     {
         int n=grid.size();
-        int x, y;
         
         for(int i=0; i<n; i++){
             for(int j=0; j<n; j++){
                 if(grid[i][j] == 1)
-                    x = i, y = j;
+                    return dfs(i, j, n, grid);
             }
         }
         
-        return dfs(x, y, n, grid);
+        return false;
     }
 };
 
