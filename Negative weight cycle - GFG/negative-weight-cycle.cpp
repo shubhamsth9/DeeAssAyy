@@ -6,7 +6,7 @@ using namespace std;
 class Solution {
 public:
 	int isNegativeWeightCycle(int n, vector<vector<int>>edges){
-	    vector<pair<int, pair<int, int>>> adj;
+	    vector<pair<int,pair<int,int>>> adj;
 	    
 	    for(int i=0;i<edges.size();i++){
 	        int u=edges[i][0];
@@ -43,8 +43,9 @@ public:
         }
         
 	    return 0;
-	   // 
-	   // for(int i=0; i<n; i++){
+	   // vector<pair<int, pair<int, int>>> adj;
+	    
+	   // for(int i=0; i<edges.size(); i++){
 	   //     int u = edges[i][0];
 	   //     int v = edges[i][1];
 	   //     int w = edges[i][2];
@@ -57,18 +58,23 @@ public:
 	   // for(int i=0; i<n-1; i++){
 	   //     for(auto it:adj){
 	   //         int u = it.first;
-	   //         int v = it.second.first; int w = it.second.second;
-	   //         if(dist[u] + w < dist[v])
+	   //         int v = it.second.first;
+	   //         int w = it.second.second;
+	   //         if(dist[v] > dist[u] + w){
 	   //             dist[v] = dist[u] + w;
+	   //         }
 	   //     }
 	   // }
 	    
-	   // for(auto it:adj){
-	   //     int u = it.first;
-	   //     int v = it.second.first; int w = it.second.second;
-	   //     if(dist[u] + w < dist[v])
-	   //         return 1;
-	   // }
+    //     for(auto it:adj){
+    //         int u = it.first;
+    //         int v = it.second.first;
+    //         int w = it.second.second;
+    //         if(dist[v] > dist[u] + w){
+    //             return 1;
+    //         }
+    //     }
+	    
 	   // return 0;
 	}
 };
