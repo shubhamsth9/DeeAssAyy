@@ -6,7 +6,7 @@ using namespace std;
 class Solution {
 public:
 	int isNegativeWeightCycle(int n, vector<vector<int>>edges){
-	    vector<pair<int,pair<int,int>>> adj;
+	    vector<pair<int, pair<int, int>>> adj;
 	    
 	    for(int i=0;i<edges.size();i++){
 	        int u=edges[i][0];
@@ -43,7 +43,7 @@ public:
         }
         
 	    return 0;
-	   // vector<pair<int, pair<int, int>>> adj;
+	   // 
 	   // for(int i=0; i<n; i++){
 	   //     int u = edges[i][0];
 	   //     int v = edges[i][1];
