@@ -5,24 +5,18 @@ using namespace std;
  // } Driver Code Ends
 class Solution {
   public:
-  void dfs(int src, int dest, vector<int> adj[], vector<bool>& vis, int& cnt){
+  void dfs(int src, int dest, vector<int> adj[], int& cnt){
       if(src == dest){
           cnt++;
           return;
       }
-      vis[src] = true;
-      for(auto it:adj[src]){
-          if(!vis[it]){
-              dfs(it, dest, adj, vis, cnt);
-          }
-      }
-      vis[src] = false;
+      for(auto it:adj[src])
+          dfs(it, dest, adj, cnt);
   }
   
     int countPaths(int V, vector<int> adj[], int source, int destination) {
         int cnt = 0;
-        vector<bool> vis(V, false);
-        dfs(source, destination, adj, vis, cnt);
+        dfs(source, destination, adj, cnt);
         return cnt;
     }
 };
