@@ -15,7 +15,7 @@ public:
             adj.push_back({u,{v,w}});
 	    }
 	    
-	    vector<int> dist(n,1e6+7);
+	    vector<int> dist(n, 1e6+7);
 	    dist[0]=0;
 	    
 	    for(int i=0;i<n-1;i++){
