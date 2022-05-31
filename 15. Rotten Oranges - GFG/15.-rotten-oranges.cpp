@@ -18,6 +18,9 @@ class Solution
             }
         }
         
+        int di[] = {1, -1, 0, 0};
+        int dj[] = {0, 0, 1, -1};
+        
         while(!q.empty()){
             int flag = 0;
             int n = q.size();
@@ -25,27 +28,16 @@ class Solution
             
             for(int it=0; it<n; it++){
                 auto tmp = q.front(); q.pop();
-                int i = tmp.first, j = tmp.second;
                 
-                if(i-1 >= 0 && grid[i-1][j] == 1){
-                    grid[i-1][j] = 2;
-                    q.push({i-1, j});
-                    flag = 1;
-                }
-                if(j-1 >= 0 && grid[i][j-1] == 1){
-                    grid[i][j-1] = 2;
-                    q.push({i, j-1});
-                    flag = 1;
-                }
-                if(i+1 < grid.size() && grid[i+1][j] == 1){
-                    grid[i+1][j] = 2;
-                    q.push({i+1, j});
-                    flag = 1;
-                }
-                if(j+1 < grid[0].size() && grid[i][j+1] == 1){
-                    grid[i][j+1] = 2;
-                    q.push({i, j+1});
-                    flag = 1;
+                for(int k = 0; k<4; k++){
+                    int i = tmp.first + di[k];
+                    int j = tmp.second + dj[k];
+                    
+                    if(i>=0 and i<grid.size() and j>=0 and j<grid[0].size() and grid[i][j] == 1){
+                        grid[i][j] = 2;
+                        q.push({i, j});
+                        flag = 1;
+                    }
                 }
             }
             if(flag == 1) res++;
@@ -55,6 +47,7 @@ class Solution
         if(total_oranges == cnt) return res;
         
         return -1;
+        
     }
 };
 
