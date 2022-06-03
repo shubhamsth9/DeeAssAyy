@@ -21,8 +21,7 @@ class Solution
     {
         vector<bool> vis(V,false);
         dfs(c, c, d, adj, vis);
-        if(vis[d]) return 0;
-        return 1;
+        return !vis[d];
     }
 };
 
