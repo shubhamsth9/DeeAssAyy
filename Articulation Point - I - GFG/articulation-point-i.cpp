@@ -9,43 +9,23 @@ using namespace std;
 
 class Solution {
   public:
-//   void dfs(int src, int parent, int& t, vector<int>adj[], vector<int>& disc, vector<int>& low, vector<bool>& vis, vector<bool>& ap){
-//       vis[src] = true;
-//       disc[src] = low[src] = t;
-//       t++;
-//       int cnt = 0;
+  void dfs(int src, int parent, int& t, vector<int>adj[], vector<int>& disc, vector<int>& low, vector<bool>& vis, vector<bool>& ap){
+      vis[src] = true;
+      disc[src] = low[src] = t;
+      t++;
+      int cnt = 0;
       
-//       for(auto it:adj[src]){
-//           if(!vis[it]){
-//               cnt++;
-//               dfs(it, src, t, adj, disc, low, vis, ap);
-//               low[src] = min(low[src], low[it]);
-//               if(low[it] >= disc[src] && parent != -1) ap[src] = true;
-//           }
-//           else if(it != parent) low[src] = min(low[src], low[it]);
-//       }
-//       if(parent == -1 && cnt >= 2) ap[src] = true;
-//   }
-  
-    void dfs(int node, int parent, int &timer, vector<int> adj[], vector<int> &tin, vector<int> &low, vector<bool> &vis, vector<bool> &isArticulation){
-                 vis[node] = 1;
-                 tin[node] = low[node] = timer++;
-                 int child = 0;
-                 for(auto it: adj[node]){
-                     if(!vis[it]){
-                         dfs(it, node, timer, adj, tin, low, vis, isArticulation);
-                         low[node] = min(low[it], low[node]);
-                         if(low[it] >= tin[node] && parent != -1)
-                            isArticulation[node] = 1;
-                        child++;
-                     }
-                     else
-                        low[node] = min(low[node], tin[it]);
-                 }
-                 
-                 if(parent == -1 && child > 1)
-                    isArticulation[node] = 1;
-             }
+      for(auto it:adj[src]){
+          if(!vis[it]){
+              cnt++;
+              dfs(it, src, t, adj, disc, low, vis, ap);
+              low[src] = min(low[src], low[it]);
+              if(low[it] >= disc[src] && parent != -1) ap[src] = true;
+          }
+          else if(it != parent) low[src] = min(low[src], disc[it]);
+      }
+      if(parent == -1 && cnt >= 2) ap[src] = true;
+  }
   
     vector<int> articulationPoints(int V, vector<int>adj[]) {
         
