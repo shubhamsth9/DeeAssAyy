@@ -14,10 +14,10 @@ class Solution
     {
        vector<int> key(V, INT_MAX);
        vector<bool> mst(V, false);
-       vector<int> parent(V, -1);
+       //vector<int> parent(V, -1);
        
        key[0] = 0;
-       parent[0] = -1;
+       //parent[0] = -1;
        
        for(int i = 0 ; i < V ; i++){
            int mini = INT_MAX;
@@ -42,7 +42,7 @@ class Solution
                if(mst[v] == false && w < key[v]){
                    key[v] = w;
                    //Initialize parent of v to u
-                   parent[v] = u;
+                   //parent[v] = u;
                }
            }
        }
