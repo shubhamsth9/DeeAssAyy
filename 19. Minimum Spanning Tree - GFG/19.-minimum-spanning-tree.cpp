@@ -19,15 +19,13 @@ class Solution
        int sum = 0;
        
        for(int i = 0 ; i < V ; i++){
-           int mini = INT_MAX;
-           int u;
-           for(int v = 0 ; v < V ; v++){
-               if(mst[v] == false && key[v] < mini){
-                   u = v;
-                   mini = key[v];
-               }
-           }
-           mst[u] = true;
+           int u = -1;
+            for(int i=0; i<V; i++){
+                if(!mst[i] && (u == -1 || key[u] > key[i])){
+                    u = i;
+                }
+            }
+            mst[u] = true;
            sum += key[u];
            for(auto neighbour : adj[u]){
                int v = neighbour[0];
