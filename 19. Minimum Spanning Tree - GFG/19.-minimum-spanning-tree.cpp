@@ -27,13 +27,11 @@ class Solution
             }
             mst[u] = true;
            sum += key[u];
-           for(auto neighbour : adj[u]){
-               int v = neighbour[0];
-               int w = neighbour[1];
-               if(mst[v] == false && w < key[v]){
-                   key[v] = w;
-               }
-           }
+           for(auto it:adj[u]){
+                int v = it[0], w = it[1];
+                if(!mst[v] && w < key[v])
+                    key[v] = w;
+            }
        }
       
        return sum;
@@ -51,10 +49,7 @@ class Solution
         //     }
         //     mst[u] = true;
         //     res += key[u];
-        //     for(auto it:adj[u]){
-        //         if(!mst[it[0]] && it[1] + key[it[u]] < key[it[0]])
-        //             key[it[0]] = it[1];
-        //     }
+            
         // }
         // return res;
     }
