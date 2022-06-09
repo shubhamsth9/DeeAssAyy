@@ -118,53 +118,39 @@ struct MinHeapNode
 
 void traverse(MinHeapNode* root, unordered_map<string, char>& umap, string path){
     if(root == NULL) return;
-    if(root->data != '$' && root->left == NULL && root->right == NULL){
+    if(root->data != '$'){
         umap.insert({path, root->data});
-        //cout<<root->data<<" "<<path<<endl;
         return;
     }
     traverse(root->left, umap, path + '0');
     traverse(root->right, umap, path + '1');
 }
 
-// void preOrderTransversal(MinHeapNode* root, unordered_map<string, char> &mp, string curr){
-//     if(root == NULL){
-//         return;
-//     }
-//     if(root->data != '$' && root->right == NULL && root->left == NULL){
-//         mp[curr] = root->data;
-//         return; 
-//     }
-//     preOrderTransversal(root->left, mp, curr + '0');
-//     preOrderTransversal(root->right, mp, curr + '1');
-//     return;
-// }
-
 //Function to return the decoded string.
 string decodeHuffmanData(struct MinHeapNode* root, string binaryString)
 {
-    unordered_map<string, char> mp;
-    traverse(root, mp, "");
-    string curr = "";
-    string ans = "";
-    for(int i = 0; i < binaryString.size(); i++){
-        curr += binaryString[i];
-        if(mp.count(curr)){
-            ans += mp[curr];
-            curr = "";
-        }
-    }
-    return ans;
-    // unordered_map<string, char> umap;
-    // traverse(root, umap, "");
-    // string res = "", temp = "";
-    
-    // for(int i=0; i<binaryString.length(); i++){
-    //     temp += binaryString[i];
-    //     if(umap.find(temp) != umap.end()){
-    //         res += umap[temp];
-    //         temp = "";
+    // unordered_map<string, char> mp;
+    // traverse(root, mp, "");
+    // string curr = "";
+    // string ans = "";
+    // for(int i = 0; i < binaryString.size(); i++){
+    //     curr += binaryString[i];
+    //     if(mp.count(curr)){
+    //         ans += mp[curr];
+    //         curr = "";
     //     }
     // }
-    // return res;
+    // return ans;
+    unordered_map<string, char> umap;
+    traverse(root, umap, "");
+    string res = "", temp = "";
+    
+    for(int i=0; i<binaryString.length(); i++){
+        temp += binaryString[i];
+        if(umap.find(temp) != umap.end()){
+            res += umap[temp];
+            temp = "";
+        }
+    }
+    return res;
 }
