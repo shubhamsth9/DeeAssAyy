@@ -19,7 +19,7 @@ class Solution {
         
         for(int i = idx; i<arr.size(); i++){
             temp.push_back(arr[i]);
-            if(sum-arr[i] < 0) return;
+            //if(sum-arr[i] < 0) return;
             util(i, sum-arr[i], arr, temp, res);
             temp.pop_back();
         }
