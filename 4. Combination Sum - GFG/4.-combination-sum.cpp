@@ -10,16 +10,17 @@ using namespace std;
 
 class Solution {
   public:
-    void util(int idx, int sum, vector<int>& arr, vector<int> temp, vector<vector<int>>& res){
+    void util(int idx, int sum, vector<int>& arr, vector<int>& temp, vector<vector<int>>& res){
+        if(idx == arr.size()) return;
         if(sum == 0){
             res.push_back(temp);
             return;
         }
-        if(sum < 0) return;
         
         for(int i = idx; i<arr.size(); i++){
-            temp.push_back(arr[i]);
+            if(i > idx && arr[i] == arr[i-1]) continue;
             if(sum-arr[i] < 0) return;
+            temp.push_back(arr[i]);
             util(i, sum-arr[i], arr, temp, res);
             temp.pop_back();
         }
@@ -28,15 +29,9 @@ class Solution {
     vector<vector<int>> combinationSum(vector<int> &arr, int sum) {
         vector<vector<int>> res;
         vector<int> temp;
-        vector<int> copy;
-        set<int> st;
+        sort(arr.begin(), arr.end());
         
-        for(int i=0; i<arr.size(); i++){
-            st.insert(arr[i]);
-        }
-        for(auto it:st) copy.push_back(it);
-        
-        util(0, sum, copy, temp, res);
+        util(0, sum, arr, temp, res);
         return res;
     }
 };
