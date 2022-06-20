@@ -17,11 +17,14 @@ class Solution
     //Function to find the nth fibonacci number using bottom-up approach.
     long long findNthFibonacci(int n)
     {
-        long long dp[n+1] = {1, 1};
+        long long prev=1, prev2=1;
+        
         for(int i=2; i<n; i++){
-            dp[i] = dp[i-1] + dp[i-2];
+            long long curr = prev + prev2;
+            prev2 = prev;
+            prev = curr;
         }
-        return dp[n-1];
+        return prev;
     }
 };
 
