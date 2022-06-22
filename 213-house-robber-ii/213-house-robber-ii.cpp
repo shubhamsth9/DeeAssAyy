@@ -1,25 +1,18 @@
 class Solution {
 public:
-    int f(vector<int>& nums){
-        int n = nums.size(), temp1, temp2;
-        temp1 = temp2 = nums[0];
-        if(n>1) temp1 = max(nums[1], nums[0]);
-        for(int i=2; i<n; i++){
-            int curr = max(temp1, nums[i]+temp2);
-            temp2 = temp1;
-            temp1 = curr;
+    int f(vector<int>& nums, int l, int h){
+        int curr = 0, prev=0;
+        for(int i=l; i<=h; i++){
+            int temp = max(nums[i]+prev, curr);
+            prev = curr;
+            curr = temp;
         }
-        return temp1;
+        return curr;
     }
     
     int rob(vector<int>& nums) {
         int n=nums.size();
         if(n == 1) return nums[0];
-        vector<int> copy;
-        for(int i=1; i<n; i++){
-            copy.push_back(nums[i]);
-        }
-        nums.pop_back();
-        return max(f(nums), f(copy));
+        return max(f(nums, 0, n-2), f(nums, 1, n-1));
     }
 };
