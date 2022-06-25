@@ -1,20 +1,20 @@
 class Solution {
 public:
-    bool isHappy(int n) {
-        unordered_set<int> st;
-        while(1){
-            if(n == 1) return true;
-            else{
-                if(st.find(n) != st.end()) return false;
-                else st.insert(n);
-                int temp = 0;
-                while(n){
-                    temp += pow(n%10, 2);
-                    n = n/10;
-                }
-                n = temp;
+    int squareSum(int n){
+        int temp = 0;
+            while(n){
+                temp += pow(n%10, 2);
+                n = n/10;
             }
-        }
-        return false;
+        return temp;
+    }
+    bool isHappy(int n) {
+        int slow = n, fast = n;
+        do{
+            slow = squareSum(slow);
+            fast = squareSum(squareSum(fast));
+            if(fast == 1) return true;
+        }while(slow != fast);
+        return slow == 1;
     }
 };
