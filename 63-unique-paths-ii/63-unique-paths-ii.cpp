@@ -16,9 +16,8 @@ public:
                 int up = 0, left = 0;
                 if(grid[i][j] == 1){
                     dp[i][j] = 0;
-                    continue;
                 } 
-                if(i == 0 && j == 0) dp[i][j] = 1;
+                else if(i == 0 && j == 0) dp[i][j] = 1;
                 else{
                     if(i > 0) up = dp[i-1][j];
                     if(j > 0) left = dp[i][j-1];
