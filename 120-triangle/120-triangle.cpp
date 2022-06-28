@@ -8,7 +8,7 @@ public:
     
     int minimumTotal(vector<vector<int>>& triangle) {
         int n = triangle.size();
-        vector<vector<int>> dp(n, vector<int>(n, -1));
+        vector<vector<int>> dp(n, vector<int>(n));
         
         for(int j=n-1; j>=0; j--) dp[n-1][j] = triangle[n-1][j];
         
