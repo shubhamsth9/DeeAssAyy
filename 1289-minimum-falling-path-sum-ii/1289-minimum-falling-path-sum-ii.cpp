@@ -1,13 +1,8 @@
 class Solution {
 public:
     int f(int i, int j, int n, vector<vector<int>> &grid, vector<vector<int>> &dp){
-        if(i == n-1){
-            int mini = INT_MAX;
-            for(int k=0; k<n; k++){
-                if(k != j)
-                    mini = min(mini, grid[i][j]);
-            }
-            return mini;
+        if(i == n){
+            return 0;
         }
         
         if(dp[i][j] != INT_MIN) return dp[i][j];
