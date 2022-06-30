@@ -11,15 +11,15 @@ using namespace std;
 class Solution
 {
     public:
-    void f(int i, vector<int> &a, vector<int> &temp, vector<vector<int>> &res){
-        if(i == a.size()){
-            res.push_back(temp);
-            return;
+    void f(int index, vector<int> &a, vector<int> &temp, vector<vector<int>> &res){
+        res.push_back(temp);
+        
+        for(int i=index; i<a.size(); i++){
+            temp.push_back(a[i]);
+            f(i+1, a, temp, res);
+            temp.pop_back();
         }
-        temp.push_back(a[i]);
-        f(i+1, a, temp, res);
-        temp.pop_back();
-        f(i+1, a, temp, res);
+        return ;
     }
     
     vector<vector<int>> subsets(vector<int>& a)
