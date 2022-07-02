@@ -16,7 +16,7 @@ public:
             maxV = max(maxV, vCuts[i]-vCuts[i-1]);
        
         long long a = max(maxH, h-hCuts[n-1])%mod, b = max(maxV, v-vCuts[m-1])%mod;
-        // long long res = ;
-        return (int)((a * b)%mod);
+        long long res = (a * b)%mod;
+        return (int)res;
     }
 };
