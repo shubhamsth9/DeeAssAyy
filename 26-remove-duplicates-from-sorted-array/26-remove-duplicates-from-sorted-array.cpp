@@ -6,8 +6,7 @@ public:
         while(j<n){
             while(j<n && nums[j] == nums[i]) j++;
             if(j<n){
-                swap(nums[i+1], nums[j]);
-                i++, j++;
+                nums[++i] = nums[j++];
             }
         }
         return i+1;
