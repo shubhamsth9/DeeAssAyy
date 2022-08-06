@@ -1,6 +1,9 @@
 class Solution {
 public:
     int subarraysDivByK(vector<int>& nums, int k) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        
         vector<int> freq(k, 0);
         freq[0] = 1;
         int cnt = 0, n = nums.size(), sum=0;
