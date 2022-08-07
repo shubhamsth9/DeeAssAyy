@@ -16,18 +16,18 @@ public:
         
         
         //vis[0] = true;
-        queue<int> q;
+        stack<int> q;
         q.push(0);
         int res = 0;
         
         while(!q.empty()){
-                int temp = q.front(); q.pop();
-                //vis[temp] = true;
-                res++;
-                uset.insert(temp);
-                for(auto it:graph[temp]){
-                    if(uset.find(it) == uset.end()){
-                        q.push(it);
+            int temp = q.top(); q.pop();
+            //vis[temp] = true;
+            res++;
+            uset.insert(temp);
+            for(auto it:graph[temp]){
+                if(uset.find(it) == uset.end()){
+                    q.push(it);
                 }
             }
         }
