@@ -1,6 +1,9 @@
 class Solution {
 public:
     int reachableNodes(int n, vector<vector<int>>& edges, vector<int>& rest) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        
         vector<vector<int>> graph(n);
         //vector<bool> vis(n, false);
         unordered_set<int> uset(rest.begin(), rest.end());
