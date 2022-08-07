@@ -21,8 +21,6 @@ public:
         int res = 0;
         
         while(!q.empty()){
-            int size = q.size();
-            while(size--){
                 int temp = q.front(); q.pop();
                 //vis[temp] = true;
                 res++;
@@ -30,7 +28,6 @@ public:
                 for(auto it:graph[temp]){
                     if(uset.find(it) == uset.end()){
                         q.push(it);
-                    }
                 }
             }
         }
