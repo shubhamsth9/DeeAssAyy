@@ -5,12 +5,13 @@ public:
         cin.tie(NULL);
         
         int cnt = 0, n=nums.size();
-        unordered_set<int> uset(nums.begin(), nums.end());
+        unordered_set<int> uset;
         
-        for(int i=0; i<n-2; i++){
-            int temp1 = nums[i]+diff, temp2 = (2*diff) + nums[i];
-            if(uset.find(temp1) != uset.end() && uset.find(temp2) != uset.end()) cnt++;
+        for(int i=0; i<n; i++){
+            if(uset.count(nums[i]-diff) && uset.count(nums[i]-2*diff)) cnt++;
+            uset.insert(nums[i]);
         }
+        
         return cnt;
     }
 };
