@@ -1,8 +1,10 @@
 class Solution {
 public:
     int maxArea(vector<int>& height) {
-        int n = height.size();
-        int res = 0, i = 0, j = n-1;
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        
+        int res = 0, i = 0, j = height.size()-1;
         
         while(i < j) {
             res = max(res, (j-i)*min(height[i], height[j]));
