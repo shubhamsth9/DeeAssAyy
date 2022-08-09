@@ -5,10 +5,12 @@ public:
         sort(nums.begin(), nums.end());
         int n = nums.size();
         
-        for(int i=0; i<n; i++){
+        for(int i=0; i<n-2; i++){
             
             int target = -nums[i];
             int low = i+1, high = n-1;
+            
+            if(target < 0) break;
             
             while(low < high){
                 if(nums[low] + nums[high] < target) low++;
