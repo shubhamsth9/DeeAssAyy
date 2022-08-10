@@ -1,13 +1,8 @@
 class Solution {
-public:
-//     int fun(int i, int j, int k, vector<int>& cardPoints){
-//         if(k <= 0) return 0;
-//         int l = cardPoints[i] + fun(i+1, j, k-1, cardPoints);
-//         int r = cardPoints[j] + fun(i, j-1, k-1, cardPoints);
-//         return max(l, r);
-//     }
-        
+public: 
     int maxScore(vector<int>& cardPoints, int k) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
         
         int i = 0, sum = 0;
         
@@ -25,7 +20,5 @@ public:
         }
         
         return res;
-        
-        // return fun(0, cardPoints.size()-1, k, cardPoints);
     }
 };
