@@ -1,6 +1,9 @@
 class Solution {
 public:
     long long gridGame(vector<vector<int>>& temp) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        
         int n = temp[0].size();
         
         vector<vector<long long>> grid(2, vector<long long>(n, 0));
