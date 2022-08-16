@@ -17,6 +17,9 @@ public:
     }
     
     bool exist(vector<vector<char>>& board, string word) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        
         int len = word.size();
         for(int i=0; i<board.size(); i++){
             for(int j=0; j<board[0].size(); j++){
