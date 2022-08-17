@@ -6,7 +6,7 @@ public:
             if(a[i] > b[j]) a[k--] = a[i--];
             else a[k--] = b[j--];
         }
-        while(i>=0 && k >= 0) a[k--] = a[i--];
-        while(j>=0 && k >= 0) a[k--] = b[j--];
+        while(i>=0) a[k--] = a[i--];
+        while(j>=0) a[k--] = b[j--];
     }
 };
