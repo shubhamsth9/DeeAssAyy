@@ -1,6 +1,9 @@
 class Solution {
 public:
     int uniqueMorseRepresentations(vector<string>& words) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        
         vector<string> ref = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
         unordered_set<string> uset;
         
