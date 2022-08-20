@@ -1,6 +1,9 @@
 class Solution {
 public:
     bool isPossible(vector<int>& nums) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        
         unordered_map<int, int> cnt, tail;
         for(int it:nums) cnt[it]++;
         for(int it:nums){
