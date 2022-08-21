@@ -1,6 +1,9 @@
 class Solution {
 public:
     string longestCommonPrefix(vector<string>& strs) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        
         string res = "";
         int i=0;
         while(res != strs[0]){
