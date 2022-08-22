@@ -1,6 +1,9 @@
 class Solution {
 public:
     int findMaxValueOfEquation(vector<vector<int>>& pts, int k) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        
         int res = INT_MIN, n = pts.size();
         priority_queue<pair<int, int>> pq;
         
