@@ -7,13 +7,14 @@ public:
 //     }
     
     bool isPowerOfFour(int n) {
-        if(n == 1) return true;
-        if(n <= 0) return false;
-        long long x = 4;
-        while(x <= n){
-            if((x^n) == 0) return true;
-            x = (x << 2);
-        }
-        return false;
+        // if(n == 1) return true;
+        // if(n <= 0) return false;
+        // long long x = 4;
+        // while(x <= n){
+        //     if((x^n) == 0) return true;
+        //     x = (x << 2);
+        // }
+        // return false;
+        return (n > 0) && ((n & (n-1)) == 0) && ((n-1)%3 == 0);
     }
 };
