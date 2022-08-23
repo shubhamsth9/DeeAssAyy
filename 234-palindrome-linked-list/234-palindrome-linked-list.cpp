@@ -14,11 +14,9 @@ public:
         ios_base::sync_with_stdio(false);
         cin.tie(NULL);
         
-        if(head == NULL || head->next == NULL) return true;
-        
-        ListNode* pre = NULL, *slow = head, *fast = head;
+        ListNode* pre = NULL, *slow = head, *fast = head, *temp;
         while(fast && fast->next){
-            ListNode* temp = slow;
+            temp = slow;
             fast = fast->next->next;
             slow = slow->next;
             temp->next = pre;
