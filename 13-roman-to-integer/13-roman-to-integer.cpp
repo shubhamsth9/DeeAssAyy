@@ -1,6 +1,8 @@
 class Solution {
 public:
     int romanToInt(string s) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
         unordered_map<char, int> umap;
         umap['I'] = 1;
         umap['V'] = 5;
