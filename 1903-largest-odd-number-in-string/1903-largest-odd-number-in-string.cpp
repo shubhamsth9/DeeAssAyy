@@ -1,12 +1,12 @@
 class Solution {
 public:
     string largestOddNumber(string num) {
-        ios_base::sync_with_stdio(false);
-        cin.tie(NULL);
+        // ios_base::sync_with_stdio(false);
+        // cin.tie(NULL);
+        int i=num.size()-1;
         
-        for(int i=num.size()-1; i >= 0; i--)
-            if((num[i]-'0')%2 != 0)
-                return num.substr(0, i+1);
-        return "";
+        while(i >= 0 && (num[i--]-'0')%2 == 0) num.pop_back();
+        
+        return num;
     }
 };
