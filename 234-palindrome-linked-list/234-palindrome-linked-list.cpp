@@ -11,6 +11,11 @@
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        
+        if(head == NULL || head->next == NULL) return true;
+        
         ListNode* pre = NULL, *slow = head, *fast = head;
         while(fast && fast->next){
             ListNode* temp = slow;
