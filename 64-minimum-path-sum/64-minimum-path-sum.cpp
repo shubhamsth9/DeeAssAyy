@@ -14,6 +14,8 @@ public:
 //     }
     
     int minPathSum(vector<vector<int>>& grid) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
         
         int m=grid.size(), n=grid[0].size();
         vector<vector<int>> dp(m, vector<int>(n));
