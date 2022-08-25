@@ -1,11 +1,11 @@
 class Solution {
 public:
     bool canConstruct(string note, string mag) {
-        unordered_map<char, int> umap;
-        for(char c:mag) umap[c]++;
+        int freq[26] = {0};
+        for(char c:mag) freq[c-'a']++;
         for(char c:note){
-            if(umap.find(c) == umap.end() || umap[c] <= 0) return false;
-            umap[c]--;
+            if(freq[c-'a'] == 0) return false;
+            freq[c-'a']--;
         }
         return true;
     }
