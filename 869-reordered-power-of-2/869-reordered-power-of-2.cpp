@@ -4,15 +4,15 @@ public:
         ios_base::sync_with_stdio(false);
         cin.tie(nullptr);
         
-        string s = sorted(n);
+        string s = to_string(n);
+        sort(s.begin(), s.end());
+        
         for(int i=0; i<32; i++){
-            if(s == sorted(1<<i)) return true;
+            string tmp = to_string(1<<i);
+            sort(tmp.begin(), tmp.end());
+            
+            if(s == tmp) return true;
         }
         return false;
-    }
-    string sorted(int n){
-        string tmp = to_string(n);
-        sort(tmp.begin(), tmp.end());
-        return tmp;
     }
 };
