@@ -10,9 +10,6 @@ public:
     }
     
     int numIslands(vector<vector<char>>& grid) {
-        ios_base::sync_with_stdio(false);
-        cin.tie(nullptr);
-        
         int res = 0;
         int n = grid.size(), m = grid[0].size();
         for(int i=0; i<n; i++){
