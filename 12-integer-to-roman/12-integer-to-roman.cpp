@@ -1,6 +1,9 @@
 class Solution {
 public:
     string intToRoman(int num) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(nullptr);
+        
         vector<pair<int, string>> vp= {
             {1000, "M"},
             {900, "CM"},
