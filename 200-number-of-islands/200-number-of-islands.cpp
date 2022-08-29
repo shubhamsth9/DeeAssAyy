@@ -1,7 +1,8 @@
 class Solution {
 public:
     void dfs(int i, int j, vector<vector<char>>& grid){
-        if(i < 0 || i >= grid.size() || j < 0 || j>=grid[0].size() || grid[i][j] == '0') return;
+        int n = grid.size(), m = grid[0].size();
+        if(i < 0 || i >= n || j < 0 || j >= m || grid[i][j] == '0') return;
         grid[i][j] = '0';
         dfs(i+1, j, grid);
         dfs(i-1, j, grid);
