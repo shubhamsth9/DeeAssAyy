@@ -1,8 +1,8 @@
 class Solution {
 public:
     bool findRotation(vector<vector<int>>& mat, vector<vector<int>>& target) {
-        ios_base::sync_with_stdio(false);
-        cin.tie(nullptr);
+//         ios_base::sync_with_stdio(false);
+//         cin.tie(nullptr);
         
         if(mat == target) return true;
         int n = target.size();
