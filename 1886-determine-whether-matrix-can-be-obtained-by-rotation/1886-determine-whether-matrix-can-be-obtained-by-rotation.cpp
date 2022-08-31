@@ -1,6 +1,9 @@
 class Solution {
 public:
     bool findRotation(vector<vector<int>>& mat, vector<vector<int>>& target) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(nullptr);
+        
         bool c[4] = {true, true, true, true};
         int n = target.size();
         
