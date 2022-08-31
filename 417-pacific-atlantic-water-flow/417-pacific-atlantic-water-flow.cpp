@@ -13,6 +13,9 @@ public:
     }
     
     vector<vector<int>> pacificAtlantic(vector<vector<int>>& h) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(nullptr);
+        
         vector<vector<int>> res;
         int m = h.size(), n = h[0].size();
         pac = atl = vector<vector<bool>>(m, vector<bool>(n, false));
