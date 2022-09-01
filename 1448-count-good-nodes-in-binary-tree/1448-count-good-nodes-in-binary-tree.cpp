@@ -11,15 +11,16 @@
  */
 class Solution {
 public:
-    int f(int maxv, TreeNode* root){
+    int f(TreeNode* root, int maxv){
         if(root == NULL) return 0;
         if(root->val >= maxv){
-            return 1 + f(root->val, root->left) + f(root->val, root->right);
+            return 1 + f(root->left, root->val) + f(root->right, root->val);
         }
-        else return f(maxv, root->left) + f(maxv, root->right);
+        else return f(root->left, maxv) + f(root->right, maxv);
         
     }
     int goodNodes(TreeNode* root) {
-        return f(INT_MIN, root);
+        
+        return f(root, INT_MIN);
     }
 };
