@@ -12,9 +12,6 @@
 class Solution {
 public:
     vector<double> averageOfLevels(TreeNode* root) {
-        ios_base::sync_with_stdio(false);
-        cin.tie(nullptr);
-        
         vector<double> res;
         queue<TreeNode*> q;
         q.push(root);
