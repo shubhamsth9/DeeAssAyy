@@ -24,7 +24,7 @@ public:
                 if(curr->left) q.push(curr->left);
                 if(curr->right) q.push(curr->right);
             }
-            res.push_back((double)sum/(double)n);
+            res.push_back(sum/(double)n);
         }
         return res;
     }
