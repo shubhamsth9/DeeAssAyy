@@ -18,6 +18,8 @@ public:
         pre(root->right, dist+1, lvl+1, mp);
     }
     vector<vector<int>> verticalTraversal(TreeNode* root) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(nullptr);
         map<int, vector<pair<int, int>>> mp;
         pre(root, 0, 0, mp);
         vector<vector<int>> res;
