@@ -34,10 +34,10 @@ public:
             while(n--){
                 Node* curr = q.front();
                 q.pop();
-                temp.emplace_back(curr->val);
+                temp.push_back(curr->val);
                 for(auto it:curr->children) q.push(it);
             }
-            res.emplace_back(temp);
+            res.push_back(temp);
         }
         return res;
     }
