@@ -12,14 +12,14 @@
 class Solution {
 public:
     bool haveone(TreeNode* root){
-        if(root == nullptr) return false;
+        if(root == NULL) return false;
         bool left = haveone(root->left), right = haveone(root->right);
-        if(!left) root->left = nullptr;
-        if(!right) root->right = nullptr;
+        if(!left) root->left = NULL;
+        if(!right) root->right = NULL;
         // if(root->val == 1) return true;
         return root->val == 1 || left || right;
     }
     TreeNode* pruneTree(TreeNode* root) {
-        return haveone(root) ? root : nullptr ;
+        return haveone(root) ? root : NULL ;
     }
 };
