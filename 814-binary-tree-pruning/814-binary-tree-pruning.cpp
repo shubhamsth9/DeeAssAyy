@@ -20,10 +20,10 @@ public:
     //     return root->val == 1 || left || right;
     // }
     TreeNode* pruneTree(TreeNode* root) {
-        if(root == NULL) return root;
+        if(!root) return NULL;
         root->left = pruneTree(root->left);
         root->right = pruneTree(root->right);
-        if(root->val == 0 && root->left == NULL && root->right == NULL) root = NULL;
+        if(root->val == 0 && root->left == NULL && root->right == NULL) return NULL;
         return root ;
     }
 };
