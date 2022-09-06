@@ -29,9 +29,6 @@ public:
     }
     
     vector<vector<int>> levelOrder(Node* root) {
-        ios_base::sync_with_stdio(false);
-        cin.tie(nullptr);
-        
         dfs(root, 0);
         return res;
     }
