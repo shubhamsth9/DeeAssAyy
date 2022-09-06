@@ -19,26 +19,20 @@ public:
 */
 
 class Solution {
+    vector<vector<int>> res;
 public:
+    void dfs(Node* root, int lvl){
+        if(!root) return;
+        if(res.size() == lvl) res.push_back({});
+        res[lvl].push_back(root->val);
+        for(auto it:root->children) dfs(it, lvl+1);
+    }
+    
     vector<vector<int>> levelOrder(Node* root) {
         ios_base::sync_with_stdio(false);
         cin.tie(nullptr);
         
-        vector<vector<int>> res;
-        if(root == NULL) return res;
-        queue<Node*> q;
-        q.push(root);
-        while(q.size()){
-            vector<int> temp;
-            int n = q.size();
-            while(n--){
-                Node* curr = q.front();
-                q.pop();
-                temp.push_back(curr->val);
-                for(auto it:curr->children) q.push(it);
-            }
-            res.push_back(temp);
-        }
+        dfs(root, 0);
         return res;
     }
 };
