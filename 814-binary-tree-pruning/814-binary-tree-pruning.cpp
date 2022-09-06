@@ -11,15 +11,19 @@
  */
 class Solution {
 public:
-    bool haveone(TreeNode* root){
-        if(root == NULL) return false;
-        bool left = haveone(root->left), right = haveone(root->right);
-        if(!left) root->left = NULL;
-        if(!right) root->right = NULL;
-        // if(root->val == 1) return true;
-        return root->val == 1 || left || right;
-    }
+    // bool haveone(TreeNode* root){
+    //     if(root == NULL) return false;
+    //     bool left = haveone(root->left), right = haveone(root->right);
+    //     if(!left) root->left = NULL;
+    //     if(!right) root->right = NULL;
+    //     // if(root->val == 1) return true;
+    //     return root->val == 1 || left || right;
+    // }
     TreeNode* pruneTree(TreeNode* root) {
-        return haveone(root) ? root : NULL ;
+        if(root == NULL) return root;
+        root->left = pruneTree(root->left);
+        root->right = pruneTree(root->right);
+        if(root->val == 0 && root->left == NULL && root->right == NULL) root = NULL;
+        return root ;
     }
 };
