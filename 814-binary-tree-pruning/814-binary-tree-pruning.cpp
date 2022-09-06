@@ -20,8 +20,8 @@ public:
         return left | right;
     }
     TreeNode* pruneTree(TreeNode* root) {
-        if(root->val == 0 && !haveone(root)) return nullptr;
-        haveone(root);
+        bool rooot = haveone(root);
+        if(root->val == 0 && !rooot) return nullptr;
         return root;
     }
 };
