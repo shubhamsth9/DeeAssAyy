@@ -16,12 +16,10 @@ public:
         bool left = haveone(root->left), right = haveone(root->right);
         if(!left) root->left = nullptr;
         if(!right) root->right = nullptr;
-        if(root->val == 1) return true;
-        return left | right;
+        // if(root->val == 1) return true;
+        return root->val == 1 || left || right;
     }
     TreeNode* pruneTree(TreeNode* root) {
-        bool rooot = haveone(root);
-        if(root->val == 0 && !rooot) return nullptr;
-        return root;
+        return haveone(root) ? root : nullptr ;
     }
 };
