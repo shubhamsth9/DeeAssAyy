@@ -1,14 +1,14 @@
 class Solution {
 public:
     int partitionString(string s) {
-        int res = 1, n=s.size();
-        unordered_set<char> uset;
+        int res = 1, n=s.size(), flag = 0;
+        // unordered_set<char> uset;
         for(int i=0; i<n; i++){
-            if(uset.find(s[i]) != uset.end()){
+            if(flag & (1<<(s[i]-'a'))){
                 res++;
-                uset.clear();
+                flag = 0;
             }
-            uset.insert(s[i]);
+            flag = flag | (1<<(s[i]-'a'));
         }
         return res;
     }
