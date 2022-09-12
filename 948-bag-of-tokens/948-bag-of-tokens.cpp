@@ -6,20 +6,19 @@ public:
         
         sort(tokens.begin(), tokens.end());
         
-        int score = 0, i=0, j=tokens.size()-1, res=0;
+        int score = 0, i=0, j=tokens.size()-1;
         
         while(i <= j){
             if(power >= tokens[i]){
                 power -= tokens[i++];
                 score++;
-                res = max(res, score);
             }
-            else if(score > 0){
+            else if(score > 0 && i < j){
                 power += tokens[j--];
                 score--;
             }
-            else return res;
+            else break;
         }
-        return res;
+        return score;
     }
 };
