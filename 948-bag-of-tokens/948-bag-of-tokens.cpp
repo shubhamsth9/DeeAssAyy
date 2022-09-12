@@ -10,13 +10,13 @@ public:
         
         while(i <= j){
             if(power >= tokens[i]){
-                power -= tokens[i];
-                score++, i++;
+                power -= tokens[i++];
+                score++;
                 res = max(res, score);
             }
             else if(score > 0){
-                power += tokens[j];
-                score--, j--;
+                power += tokens[j--];
+                score--;
             }
             else return res;
         }
