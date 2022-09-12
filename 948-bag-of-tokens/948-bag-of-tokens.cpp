@@ -1,6 +1,9 @@
 class Solution {
 public:
     int bagOfTokensScore(vector<int>& tokens, int power) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(nullptr);
+        
         int score = 0, n = tokens.size();
         sort(tokens.begin(), tokens.end());
         int i=0, j=n-1, res=0;
