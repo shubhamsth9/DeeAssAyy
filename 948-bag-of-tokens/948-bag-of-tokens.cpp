@@ -4,16 +4,18 @@ public:
         ios_base::sync_with_stdio(false);
         cin.tie(nullptr);
         
-        int score = 0, n = tokens.size();
         sort(tokens.begin(), tokens.end());
+        
+        int score = 0, n = tokens.size();
         int i=0, j=n-1, res=0;
+        
         while(i <= j){
             if(power >= tokens[i]){
                 power -= tokens[i];
                 score++, i++;
                 res = max(res, score);
             }
-            else if(score >= 1){
+            else if(score > 0){
                 power += tokens[j];
                 score--, j--;
             }
