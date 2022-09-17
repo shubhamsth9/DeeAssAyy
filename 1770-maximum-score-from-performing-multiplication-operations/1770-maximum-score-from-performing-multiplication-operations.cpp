@@ -1,24 +1,20 @@
+
 class Solution {
 public:
-    vector<vector<int>> dp;
-    
-    int solve(int i, int n, int j, vector<int> &nums, vector<int> &M){
+    int helper(int l, int r, vector<int>& nums, vector<int>& mul, vector<vector<int>>& dp){
+        int n = nums.size();
+        if(((n-1)-(r-l)) == mul.size()) return 0;
+        if(dp[(n-1)-(r-l)][l] != INT_MIN) return dp[(n-1)-(r-l)][l];
         
-        if (j == M.size()) return 0;
-        if (dp[i][j] != INT_MIN) return dp[i][j];
+        int left = nums[l]*mul[(n-1)-(r-l)] + helper(l+1, r, nums, mul, dp);
+        int right = nums[r]*mul[(n-1)-(r-l)] + helper(l, r-1, nums, mul, dp);
         
-        // Left Side
-        int left = solve(i + 1, n, j + 1, nums, M) + (nums[i] * M[j]);
-        
-        // Right Side
-        int right = solve(i, n, j + 1, nums, M) + (nums[(n - 1) - (j - i)] * M[j]);
-        
-        return dp[i][j] = max(left, right);
+        return dp[(n-1)-(r-l)][l] = max(left, right);
     }
     
-    int maximumScore(vector<int>& nums, vector<int>& M) {   
-        int n = nums.size(), m = M.size();
-        dp.resize(m + 1, vector<int>(m + 1, INT_MIN));
-        return solve(0, n, 0, nums, M);
+    int maximumScore(vector<int>& nums, vector<int>& mul) {
+        int n=nums.size(), m = mul.size();
+        vector<vector<int>> dp(1001, vector<int>(1001, INT_MIN));
+        return helper(0, n-1, nums, mul, dp);
     }
 };
