@@ -22,24 +22,19 @@ public:
             
             for(int i=0; i<n; i++){
                 TreeNode* temp = q.front(); q.pop();
-                
-                if(temp->left){
-                    q.push(temp->left);
-                    q.push(temp->right);
-                    if(lvl%2 == 0){
-                        temparr.push_back(temp->left);
-                        temparr.push_back(temp->right);
-                    }
+                temparr.push_back(temp);
+                if(temp->left) q.push(temp->left);
+                if(temp->right) q.push(temp->right);
+            }
+            
+            if(lvl&1){
+                n = temparr.size();
+                for(int j=0; j<n/2; j++){
+                    swap(temparr[j]->val, temparr[n - j - 1]->val);
                 }
             }
             
-            if(lvl%2 == 0 && temparr.size() != 0){
-                for(int j=0; j<n; j++){
-                    swap(temparr[j]->val, temparr[2*n - j - 1]->val);
-                }
-            }
-            
-            lvl++;
+            lvl ^= 1;
         }
         return root;
     }
