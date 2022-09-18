@@ -35,9 +35,7 @@ public:
             
             if(lvl%2 == 0 && temparr.size() != 0){
                 for(int j=0; j<n; j++){
-                    int k = temparr[j]->val;
-                    temparr[j]->val = temparr[2*n - j - 1]->val;
-                    temparr[2*n - j - 1]->val = k;
+                    swap(temparr[j]->val, temparr[2*n - j - 1]->val);
                 }
             }
             
