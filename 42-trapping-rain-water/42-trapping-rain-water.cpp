@@ -1,6 +1,9 @@
 class Solution {
 public:
     int trap(vector<int>& height) {
+        ios_base::sync_with_stdio(false);
+          cin.tie(nullptr);
+        
         int res = 0, n=height.size();
         stack<int> st;
         
