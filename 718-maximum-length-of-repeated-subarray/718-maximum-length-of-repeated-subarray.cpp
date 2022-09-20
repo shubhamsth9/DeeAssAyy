@@ -1,6 +1,9 @@
 class Solution {
 public:
     int findLength(vector<int>& nums1, vector<int>& nums2) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(nullptr);
+        
         int n=nums1.size(), m=nums2.size();
         int i = 0, res = 0;
         vector<vector<int>> dp(n+1, vector<int>(m+1, 0));
@@ -8,7 +11,7 @@ public:
             for(int j=m-1; j>=0; j--){
                 if(nums1[i] == nums2[j]){
                     dp[i][j] = dp[i+1][j+1] + 1;
-                    if(res<dp[i][j]) res = dp[i][j];
+                    res = max(res, dp[i][j]);
                 }
             }
         }
