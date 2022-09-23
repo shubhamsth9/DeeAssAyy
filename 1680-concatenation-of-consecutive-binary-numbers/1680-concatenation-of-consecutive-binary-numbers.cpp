@@ -1,14 +1,11 @@
 class Solution {
 public:
-    int nofbits(int n){
-        return log2(n)+1;
-    }
     int concatenatedBinary(int n) {
-        long res = 0;
+        long res = 0, len = 0;
         int m = 1e9+7;
         for(int i=1; i<=n; i++){
-            int len = nofbits(i);
-            res = ((res << len) + i)%m;
+            if((i & (i-1)) == 0) len++;
+            res = (res << len)%m + i;
         }
         return res;
     }
