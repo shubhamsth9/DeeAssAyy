@@ -8,7 +8,7 @@ public:
         int m = 1e9+7;
         for(int i=1; i<=n; i++){
             int len = nofbits(i);
-            res = ((res << len)%m + i)%m;
+            res = ((res << len) + i)%m;
         }
         return res;
     }
