@@ -1,38 +1,33 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
 class Solution {
-    vector<vector<int>> res;
 public:
-    void pre(TreeNode* root, int sum, int targetSum, vector<int>& temp){
-        if(root == NULL) return;
-        
-        sum += root->val;
-        temp.push_back(root->val);
-        
-        if(sum == targetSum && !root->left && !root->right){
-            res.push_back(temp);
-        }
-        
-        if(root->left) pre(root->left, sum, targetSum, temp);
-        if(root->right) pre(root->right, sum, targetSum, temp);
-        
-        temp.pop_back();
+    vector<vector<int>> ans;
+    vector<vector<int>> pathSum(TreeNode* root, int targetSum) 
+    {
+        if(!root) return ans;
+         vector<int> p;
+        dfs(root,0,p,targetSum);
+        return ans;
     }
-    vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
-        ios_base::sync_with_stdio(false);
-        cin.tie(nullptr);
+    
+    void dfs(TreeNode* root, int sum, vector<int>&path,int targetSum)
+    {
+        if(!root->left && !root->right)
+        {
+            sum+=root->val;
+            path.push_back(root->val);
+            if(sum==targetSum)
+                ans.push_back(path); 
+            path.pop_back();
+            return;
+        }
+        sum+=root->val;
+        path.push_back(root->val);
+        if(root->left) 
+            dfs(root->left,sum,path,targetSum);
+        if(root->right) 
+            dfs(root->right,sum,path,targetSum);
+        path.pop_back();
+         
         
-        vector<int> temp;
-        pre(root, 0, targetSum, temp);
-        return res;
     }
 };
