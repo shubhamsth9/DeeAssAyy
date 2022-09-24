@@ -13,13 +13,15 @@ class Solution {
 public:
     void pre(TreeNode* root, int sum, vector<int> temp, vector<vector<int>> &res){
         if(root == NULL) return;
-        if(sum == root->val && !root->left && !root->right){
-            temp.push_back(root->val);
+        
+        temp.push_back(root->val);
+        sum -= root->val;
+        
+        if(sum == 0 && !root->left && !root->right){
             res.push_back(temp);
             return;
         }
-        temp.push_back(root->val);
-        sum -= root->val;
+        
         pre(root->left, sum, temp, res);
         pre(root->right, sum, temp, res);
     }
