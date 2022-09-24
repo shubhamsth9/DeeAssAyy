@@ -10,24 +10,26 @@
  * };
  */
 class Solution {
+    vector<vector<int>> res;
 public:
-    void pre(TreeNode* root, int sum, vector<int> temp, vector<vector<int>> &res){
+    void pre(TreeNode* root, int sum, int targetSum, vector<int>& temp){
         if(root == NULL) return;
         
+        sum += root->val;
         temp.push_back(root->val);
-        sum -= root->val;
         
-        if(sum == 0 && !root->left && !root->right){
+        if(sum == targetSum && !root->left && !root->right){
             res.push_back(temp);
-            return;
         }
         
-        pre(root->left, sum, temp, res);
-        pre(root->right, sum, temp, res);
+        if(root->left) pre(root->left, sum, targetSum, temp);
+        if(root->right) pre(root->right, sum, targetSum, temp);
+        
+        temp.pop_back();
     }
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
-        vector<vector<int>> res;
-        pre(root, targetSum, {}, res);
+        vector<int> temp;
+        pre(root, 0, targetSum, temp);
         return res;
     }
 };
