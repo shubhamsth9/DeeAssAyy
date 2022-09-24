@@ -3,6 +3,8 @@ public:
     vector<vector<int>> ans;
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) 
     {
+        ios_base::sync_with_stdio(false);
+        cin.tie(nullptr);
         if(!root) return ans;
          vector<int> p;
         dfs(root,0,p,targetSum);
