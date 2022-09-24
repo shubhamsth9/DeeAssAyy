@@ -28,6 +28,9 @@ public:
         temp.pop_back();
     }
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(nullptr);
+        
         vector<int> temp;
         pre(root, 0, targetSum, temp);
         return res;
