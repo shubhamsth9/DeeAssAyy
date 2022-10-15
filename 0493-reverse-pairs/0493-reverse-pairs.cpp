@@ -10,6 +10,7 @@ public:
             }
             else i++;
         }
+        if(l == 0 && r == nums.size()-1) return;
         sort(nums.begin()+l, nums.begin()+r+1);
     }
     
