@@ -10,7 +10,7 @@ public:
         for(int i=0; i<q.size(); i++){
             long temp = 1;
             for(int j = q[i][0]; j <= q[i][1]; j++){
-                temp = (temp%m * powers[j]%m)%m;
+                temp = (temp * powers[j])%m;
             }
             res.push_back(temp);
         }
