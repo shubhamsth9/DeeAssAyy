@@ -10,9 +10,8 @@ public:
         return x;
     }
     int countDistinctIntegers(vector<int>& nums) {
-        unordered_set<int> uset;
+        unordered_set<int> uset(nums.begin(), nums.end());
         for(auto i:nums){
-            uset.insert(i);
             uset.insert(rev(i));
         }
         return uset.size();
