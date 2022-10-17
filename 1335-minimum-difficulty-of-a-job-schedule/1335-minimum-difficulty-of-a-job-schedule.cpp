@@ -1,29 +1,27 @@
 class Solution {
 public:
-    int t[301][11];
-    int solve(vector<int>& mat, int n, int idx, int d) {
-        if(d == 1)
-            return *max_element(begin(mat)+idx, end(mat));
-        
-        if(t[idx][d] != -1)
-            return t[idx][d];
+    int dp[301][11];
     
+    int dfs(vector<int>& job, int n, int i, int d){
+        if(d == 0)
+            return dp[i][d] = *max_element(job.begin()+i, job.end());
         
-        int Max = INT_MIN;
-        int result = INT_MAX;
+        if(dp[i][d] != -1) return dp[i][d];
         
-        for(int i = idx; i<=n-d; i++) {
-            Max = max(Max, mat[i]);
-            result = min(result, Max + solve(mat, n, i+1, d-1));
+        int mx_ele = INT_MIN, mn = INT_MAX;
+        
+        for(int j = i; j < n-d; j++){
+            mx_ele = max(mx_ele, job[j]);
+            mn = min(mn, mx_ele + dfs(job, n, j+1, d-1));
         }
-        return t[idx][d] = result;
+        
+        return dp[i][d] = mn;
     }
     
     int minDifficulty(vector<int>& jobDifficulty, int d) {
         int n = jobDifficulty.size();
-        if(n < d)
-            return -1;
-        memset(t, -1, sizeof(t));
-        return solve(jobDifficulty, n, 0, d);
+        if(n < d) return -1;
+        memset(dp, -1, sizeof(dp));
+        return dfs(jobDifficulty, n, 0, d-1);
     }
 };
