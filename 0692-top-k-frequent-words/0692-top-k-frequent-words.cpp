@@ -8,7 +8,7 @@ public:
     }
     
     vector<string> topKFrequent(vector<string>& words, int k) {
-        map<string, int> map;
+        unordered_map<string, int> map;
         for(auto it:words){
             map[it]++;
         }
