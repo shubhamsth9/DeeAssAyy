@@ -11,8 +11,7 @@ public:
                 return digits;
             }
         }
-        auto it = digits.begin();
-        digits.insert(it, 1);
+        digits.insert(digits.begin(), 1);
         return digits;
     }
 };
